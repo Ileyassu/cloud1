@@ -1,0 +1,8 @@
+---
+- name: "Creating roles for cloud1 project"
+  hosts: web
+  become: true
+  roles:
+    - common
+    - docker
+    - app

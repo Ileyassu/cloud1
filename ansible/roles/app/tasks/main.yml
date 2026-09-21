@@ -1,0 +1,35 @@
+---
+- name: "install python's docker library"
+  ansible.builtin.pip:
+    name:
+      - docker
+    state: present
+
+- name: "Remove test webapp container (free up port 80)"
+  community.docker.docker_container:
+    name: webapp
+    state: absent
+
+- name: "Create Data directories for docker volumes"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - /home/ubuntu/data/mysql
+    - /home/ubuntu/data/wordpress
+
+- name: "Clone inception repository" 
+  ansible.builtin.git:
+    repo: "https://github.com/Ileyassu/Inception.git"
+    dest: "/home/ubuntu/inception"
+    update: yes
+
+- name: "copy .env file to the server"
+  ansible.builtin.copy:
+    src: "{{playbook_dir}}/.env"
+    dest: /home/ubuntu/inception/srcs/.env
+
+- name: "launch docker compose"
+  community.docker.docker_compose_v2:
+    project_src: "/home/ubuntu/inception/srcs"

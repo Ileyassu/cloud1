@@ -1,0 +1,43 @@
+---
+- name: "Update cache"
+  ansible.builtin.apt:
+    update_cache:  yes
+    upgrade: dist
+
+- name: "Intiating instance tools"
+  ansible.builtin.apt:
+    name:
+      - ufw
+      - fail2ban
+      - unattended-upgrades
+      - python3-pip
+    state: present
+
+- name: "Turn on ufw"
+  community.general.ufw:
+    state: enabled
+
+- name: "ufw deny incoming traffic"
+  community.general.ufw: {direction: incoming, policy: deny}
+
+- name: "ufw allow outgoing traffic"
+  community.general.ufw: {direction: outgoing, policy: allow}
+
+- name: "ufw allow ssh"
+  community.general.ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+
+- name: "ufw allow http"
+  community.general.ufw:
+    rule: allow
+    port: 80
+    proto: tcp
+
+- name: "ufw allow https"
+  community.general.ufw:
+    rule: allow
+    port: 443
+    proto: tcp
+
