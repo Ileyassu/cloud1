@@ -1,0 +1,59 @@
+# Terraform
+.terraform/
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
+crash.log
+crash.*.log
+
+# Terraform-generated plans and local overrides
+*.tfplan
+*.tfplan.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Secrets and local credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pub
+ansible/**/vault.yml
+ansible/**/vault.yaml
+
+# Ansible runtime files
+*.retry
+ansible/.ansible/
+
+# Docker and local development artifacts
+docker-compose.override.yml
+**/docker-compose.override.yml
+*.log
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*~
+*.swp
+*.swo
+# Terraform local directories & files
+**/.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
