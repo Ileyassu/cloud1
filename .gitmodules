@@ -1,0 +1,6 @@
+[submodule "srcs"]
+	path = srcs
+	url = git@github.com:Ileyassu/Inception.git
+[submodule "srcs/Inception"]
+	path = srcs/Inception
+	url = git@github.com:Ileyassu/Inception.git
